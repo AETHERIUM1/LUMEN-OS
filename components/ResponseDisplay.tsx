@@ -16,7 +16,7 @@ export const ResponseDisplay: React.FC<ResponseDisplayProps> = ({ response, isLo
   const hasResponse = response.trim().length > 0;
 
   return (
-    <div className="h-96 bg-gray-900/70 backdrop-blur-sm border border-gray-500/30 rounded-lg p-4 shadow-2xl font-mono text-sm text-gray-300 overflow-y-auto">
+    <div className="h-full bg-gray-900/70 backdrop-blur-sm font-mono text-sm text-gray-300 overflow-y-auto p-4">
       {currentCommand && (
         <div className="mb-4">
           <span className="text-amber-300">&gt; </span>

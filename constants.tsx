@@ -1,5 +1,9 @@
 import React from 'react';
-import type { ArchitecturePillar } from './types';
+import type { ArchitecturePillar, DesktopApp } from './types';
+import { ApplicationMatrix } from './components/ApplicationMatrix';
+import { AutonomousAgents } from './components/AutonomousAgents';
+import { Widget } from './components/Widget';
+import { SystemMonitor } from './components/SystemMonitor';
 
 export const ICONS = {
   core: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9.75l9-5.25" /></svg>,
@@ -14,28 +18,135 @@ export const ICONS = {
   chrome: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2}><path d="M12 21a9 9 0 110-18 9 9 0 010 18z"/><path d="M12 15a3 3 0 110-6 3 3 0 010 6z"/><path d="M21 12h-3M6 12H3M12 6V3M12 21v-3"/></svg>,
   vscode: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor"><path d="M23.15 2.587L18.44 0l-3.308 3.028 4.71 2.587zm-22.3 9.413l4.71 2.587L.85 17.613 5.56 20.2l-4.71 2.587V12zM3.4 4.34l9.113 5.022v4.545L3.4 9.387zm17.2 5.045v4.545l-9.113 4.523V13.93z"/></svg>,
   nextcloud: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor"><path d="M12 1.5A10.5 10.5 0 001.5 12A10.5 10.5 0 0012 22.5A10.5 10.5 0 0022.5 12A10.5 10.5 0 0012 1.5zm0 3a7.5 7.5 0 017.5 7.5 7.5 7.5 0 01-7.5 7.5 7.5 7.5 0 01-7.5-7.5 7.5 7.5 0 017.5-7.5zm-3.11 3a1.88 1.88 0 100 3.75 1.88 1.88 0 000-3.75zm3.11 1.5a1.88 1.88 0 100 3.75 1.88 1.88 0 000-3.75zm3.12 1.5a1.88 1.88 0 100 3.75 1.88 1.88 0 000-3.75z"/></svg>,
-  libreoffice: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M5.51 3.012l10.957.012L21.99 8.52l-5.45 5.503-5.503 5.492-5.524-5.492zm.009 1.15l9.782.01L19.5 8.52l-4.204 4.225-1.16-1.15zm8.647 12.63l1.16-1.16L11.09 14.42l-4.385 4.384z"/></svg>,
-  jitsi: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M12 0C5.389 0 0 5.352 0 12c0 2.14.573 4.145 1.578 5.864l-1.5 5.824 5.91-1.53c1.69.815 3.593 1.28 5.58 1.28 6.61 0 11.922-5.352 11.922-11.922S18.61 0 12 0zm1.045 18.033c-3.188 0-6.422-1.922-6.422-4.547 0-2.625 2.156-4.47 5.766-4.47 1.406 0 2.53.258 3.422.68V6.13c0-.492-.563-1.055-1.523-1.055-1.594 0-3.118 1.242-3.118 3.117H5.53C5.53 4.676 8.42 2.379 12.07 2.379c3.657 0 5.313 1.945 5.313 5.313v8.085c-1.125.96-2.906 2.25-6.338 2.25z"/></svg>,
-  gimp: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M11.39 12.012c0-.348-.03-.686-.077-1.018l.19-2.52s-3.953-.59-4.82.918c0 0-.214 2.898 2.227 3.978a3.1 3.1 0 0 0 2.48-1.358zm1.22 0c0 .942.756 1.688 1.688 1.688s1.688-.746 1.688-1.688c0-.942-.756-1.688-1.688-1.688s-1.688.746-1.688 1.688zM12 0C5.382 0 0 5.382 0 12s5.382 12 12 12 12-5.382 12-12S18.618 0 12 0zm5.22 17.15c-.183.19-.38.37-.58.53-.29.23-1.35.91-2.92.91s-2.6-.7-2.9-1.01c-.34-.3-.49-.7-.52-.96l-1.13-2.93c-.34-.84-1.28-2.1-1.28-2.88 0-1.4 1.2-2.58 2.68-2.58.55 0 1.07.18 1.49.49l.34.25-1.36 1.65c.67.24 1.28.3 1.83.07l1.7-1.95c.5-.59.8-1.37.8-2.22 0-1.6-1.3-2.9-2.9-2.9s-2.9 1.3-2.9 2.9v.02h-1.6V9.5c0-2.48 2.02-4.5 4.5-4.5s4.5 2.02 4.5 4.5c0 1.2-.48 2.29-1.25 3.08l-2.06 2.06c-.05.2-.09.4-.09.61 0 .21.05.41.14.6l.87 2.08c.15.34.4.6.72.77.4.23 1.01.2 1.44-.22.14-.14.27-.29.39-.45.2-.28.31-.6.31-.94 0-.6-.28-1.13-.72-1.53l-.3-.28.01.01s.92-1.05.92-2.26c0-1.13-.78-2.07-1.8-2.2v-1.18c1.6.3 2.8 1.7 2.8 3.38 0 1.1-.5 2.1-1.3 2.7l-.02-.01.3.28c.6.58.98 1.4.98 2.3 0 .6-.2 1.18-.58 1.65z"/></svg>,
-  inkscape: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M5.875 1.458L.22 15.68l7.928 6.428 5.67-14.223zM18.125 1.458l5.655 14.223-7.928 6.428-5.67-14.223zM12 4.69l-2.08 5.216 2.08 5.215 2.08-5.215z"/></svg>,
-  krita: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M.24 3.6v16.8h23.52V3.6H.24zm4.8 2.4h2.4v9.6h4.8V18H5.04V6zm14.4 0v12h-2.4v-4.8h-4.8V6h7.2z"/></svg>,
-  blender: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M11.64 0c-4.44 0-8.28 3-9.96 7.08L0 12l2.04 5.4c1.8 3.96 5.52 6.6 9.96 6.6 5.28 0 9.72-3.84 10.92-8.88l1.08-4.44-5.4-3.96A11.12 11.12 0 0011.64 0zm0 3.6c2.4 0 4.56.96 6.24 2.64l-3.36 2.52a4.61 4.61 0 00-3.24-1.2 4.84 4.84 0 00-4.8 4.8c0 2.64 2.16 4.8 4.8 4.8 1.2 0 2.28-.48 3.12-1.2l3.36 2.52c-1.68 1.56-3.84 2.52-6.24 2.52-4.92 0-8.88-3.96-8.88-8.88s3.96-8.88 8.88-8.88zm10.32 8.4a8.8 8.8 0 01-8.88 8.88V12a8.8 8.8 0 018.88 0z"/></svg>,
-  gitlab: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="m23.6 9.6-2.5-7.8A.6.6 0 0 0 20.5 1h-17a.6.6 0 0 0-.6 1.8l-2.5 7.8a.6.6 0 0 0 .2 1l11.4 8.2a.6.6 0 0 0 .8 0l11.4-8.2a.6.6 0 0 0 .2-.9Z"/></svg>,
-  jupyter: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M12 24a3.18 3.18 0 0 1-3.18-3.18c0-1.76 2-3.18 3.18-3.18s3.18 1.42 3.18 3.18S13.76 24 12 24zm-9.54-3.18c0 1.25 1.42 2.65 2.65 2.65a2.65 2.65 0 0 0 2.65-2.65c0-1.24-1.19-2.65-2.65-2.65S2.46 19.57 2.46 20.82zm19.08 0c0 1.25-1.42 2.65-2.65 2.65a2.65 2.65 0 0 1-2.65-2.65c0-1.24 1.19-2.65 2.65-2.65s2.65 1.41 2.65 2.65zM12 11.13A9.91 9.91 0 0 1 2.09 1.22a9.91 9.91 0 0 1 19.82 0A9.91 9.91 0 0 1 12 11.13z"/></svg>,
-  vlc: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="m12.24 0-4.08 8.16H1.92L12.24 24l10.32-24h-6.24L12.24 0z"/></svg>,
-  audacity: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.59c1.47 0 2.818.45 3.978 1.218L9.93 11.115v-4.11c0-.75.608-1.358 1.358-1.358s1.357.608 1.357 1.358V8.9c.78-.17 1.6-.26 2.44-.26 3.11 0 5.63 2.52 5.63 5.63s-2.52 5.63-5.63 5.63c-2.48 0-4.6-1.6-5.36-3.82l5.77-5.77-9.53 1.88C2.93 15.02 2.59 13.56 2.59 12c0-5.198 4.21-9.41 9.41-9.41z"/></svg>,
-  kdenlive: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M11.96 0C7.16 0 3.2 4.01 3.2 8.86v6.28C3.2 20.01 7.16 24 11.96 24s8.75-3.99 8.75-8.86V8.86C20.71 4.01 16.76 0 11.96 0zm-5.8 5.64h2.9v12.72h-2.9zm5.8 0h2.9v12.72h-2.9zm5.8 0h2.9v12.72h-2.9z"/></svg>,
-  syncthing: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M12.012 0C7.884.012 4.044 2.304 1.68 5.628L6.42 8.7a6.22 6.22 0 0 1 5.604-5.22V0zm7.128 5.088a12 12 0 0 0-4.044-3.564v4.068a6.2 6.2 0 0 1 2.76 2.664zm2.184 5.376h4.08A12.01 12.01 0 0 0 21.9 6.78l-3.324 2.82a6.2 6.2 0 0 1 .744 3.864zM4.704 6.78a12.01 12.01 0 0 0-2.592 3.684H6.24a6.2 6.2 0 0 1 .792-3.864zM0 12c.012 4.128 2.304 7.968 5.628 10.332l3.084-4.74a6.22 6.22 0 0 1-5.232-5.592H0zm13.464 2.868l4.188 6.552A11.95 11.95 0 0 0 24 12h-4.068a6.2 6.2 0 0 1-6.468 2.868zM8.376 14.88l-6.552 4.188A11.95 11.95 0 0 0 12 24v-4.068a6.2 6.2 0 0 1-3.624-5.052z"/></svg>,
-  btop: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M0 0v24h24V0H0zm2.25 2.25h19.5v19.5H2.25V2.25zm2.25 2.25v2.25h15V4.5H4.5zm0 4.5v2.25h15V9H4.5zm0 4.5v2.25h15v-2.25H4.5zm0 4.5v2.25h15v-2.25H4.5z"/></svg>,
-  lumina: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-6.364-.386l1.591-1.591M3 12h2.25m.386-6.364l1.591 1.591" /></svg>,
-  agent_support: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 10a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
-  agent_accounting: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M12 21a9 9 0 110-18 9 9 0 010 18z" /></svg>,
-  agent_recruiting: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h4a2 2 0 012 2v1m-4 0h4m-9 4h2m-2 4h2m2-4h2m-2 4h2" /></svg>,
-  agent_social: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
-  agent_monitoring: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>,
-  agent_website: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h5M5 12a7 7 0 117 7" /></svg>,
-  agent_innovation: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>,
+  system_monitor: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
+  app_matrix: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>,
+  cloud_employees: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>,
+  architecture: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>,
 };
+
+export const NEXUS_DIRECTIVES: string[] = [
+  'Prototype Dynamic Kernel Weave',
+  'Evolve predictive algorithms',
+  'Generate new canvas topographies',
+  'Implement self-healing protocols',
+  'Harmonize resonant feedback',
+];
+
+export const PREDEFINED_INSIGHTS: string[] = [
+  "Analysis of recent Flow Streams indicates a repetitive data entry task. I can architect a visual workflow to automate this.",
+  "Multiple containerized applications are awaiting deployment. Shall I orchestrate a staggered rollout to optimize resource allocation?",
+  "The Memory Weave contains several untagged visual assets. I can initiate an AI-powered process to apply relevant Lumina Tags.",
+  "System monitoring shows suboptimal performance in the shell's rendering loop. I can initiate a self-architecting cycle to harmonize it.",
+  "A new security advisory has been issued that may affect our core kernel. I can run a simulation to assess the threat vector.",
+];
+
+export const AUTONOMOUS_AGENTS = [
+    {
+        title: 'Procurement Agent',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H7a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>,
+        description: 'Monitors inventory, analyzes usage patterns, and autonomously orders supplies from pre-approved vendors to maintain optimal stock levels.',
+    },
+    {
+        title: 'HR Onboarding Assistant',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-4 0h4" /></svg>,
+        description: 'Manages new employee setup, from provisioning accounts and hardware to scheduling orientation sessions, ensuring a smooth day-one experience.',
+    },
+    {
+        title: 'Social Media Curator',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+        description: 'Generates and schedules engaging content across multiple platforms, analyzes engagement metrics, and adapts strategy to grow online presence.',
+    },
+    {
+        title: 'Financial Reconciliation',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>,
+        description: 'Cross-references invoices, bank statements, and expense reports to identify discrepancies and automate the financial closing process.',
+    },
+];
+
+export const APPLICATION_MATRIX = [
+    {
+        title: 'Productivity Suite',
+        apps: [
+            { name: 'VS Code', icon: React.cloneElement(ICONS.vscode, {className: "h-8 w-8"}), synergy: 'NEXUS can write, refactor, and deploy code directly from the editor.' },
+            { name: 'Nextcloud', icon: React.cloneElement(ICONS.nextcloud, {className: "h-8 w-8"}), synergy: 'Automated file organization, sharing, and backup based on project context.' },
+            { name: 'Brave', icon: React.cloneElement(ICONS.brave, {className: "h-8 w-8"}), synergy: 'Intelligent web scraping and data extraction for research and analysis tasks.' },
+            { name: 'Chrome', icon: React.cloneElement(ICONS.chrome, {className: "h-8 w-8"}), synergy: 'Automates browser-based tasks for any web application.' },
+        ]
+    },
+    {
+        title: 'Communication',
+        apps: [
+            { name: 'Slack', icon: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor"><path d="M5.04 15.12c0-1.44 1.2-2.64 2.64-2.64h2.16v-2.16c0-1.44-1.2-2.64-2.64-2.64S5.04 8.88 5.04 10.32H2.4c0-2.88 2.4-5.28 5.28-5.28s5.28 2.4 5.28 5.28v2.16h2.16c1.44 0 2.64 1.2 2.64 2.64s-1.2 2.64-2.64 2.64H10.32v2.16c0 1.44 1.2 2.64 2.64 2.64s2.64-1.2 2.64-2.64h2.64c0 2.88-2.4 5.28-5.28 5.28S7.68 20.88 7.68 18v-2.16H5.04z"/></svg>, synergy: 'Monitors channels for keywords and automates responses or creates tasks.' },
+            { name: 'Gmail', icon: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor"><path d="M24 4.5v15c0 .85-.65 1.5-1.5 1.5H1.5C.65 21 0 20.35 0 19.5v-15c0-.425.175-.8.475-1.075.3-.275.7-.425 1.125-.425h20.75c.425 0 .825.15 1.125.425.3.275.525.65.525 1.075zM21.5 4.5H2.5l9.5 6.35L21.5 4.5zM21.5 19.5V6.75l-9.5 6.35-9.5-6.35V19.5h19z"/></svg>, synergy: 'Sorts incoming mail, drafts replies, and extracts attachments automatically.' },
+            { name: 'Zoom', icon: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor"><path d="M12.83,11.17a.5.5,0,0,0-.83,0,1.05,1.05,0,0,0-.24.78V15.5a1,1,0,0,0,.24.78.5.5,0,0,0,.83,0l3.2-2.25a.5.5,0,0,0,0-.82ZM3,6H16.5a1.5,1.5,0,0,1,0,3H8.25V18H5.25V9H3A1.5,1.5,0,0,1,3,6Z"/></svg>, synergy: 'Automated meeting scheduling, transcription, and summary generation.' },
+        ]
+    },
+];
+
+
+export const DESKTOP_APPS: DesktopApp[] = [
+    {
+        id: 'command_center',
+        title: 'NEXUS Command Interface',
+        icon: ICONS.engine,
+        component: <div />, // Placeholder, will be rendered with state in App.tsx
+        defaultSize: { width: 700, height: 500 },
+    },
+    {
+        id: 'app_suite',
+        title: 'Core Application Suite',
+        icon: ICONS.app_matrix,
+        component: <div className="p-4 md:p-8"><ApplicationMatrix /></div>,
+        defaultSize: { width: 900, height: 600 },
+    },
+    {
+        id: 'cloud_employees',
+        title: 'Autonomous Cloud Employees',
+        icon: ICONS.cloud_employees,
+        component: <div className="p-4 md:p-8"><AutonomousAgents /></div>,
+        defaultSize: { width: 900, height: 500 },
+    },
+    {
+        id: 'system_monitor',
+        title: 'NEXUS Monitor',
+        icon: ICONS.nexus_widget,
+        component: <SystemMonitor insights={PREDEFINED_INSIGHTS} />,
+        defaultSize: { width: 350, height: 180 },
+        isWidget: true,
+    },
+    {
+        id: 'system_integrity',
+        title: 'System Integrity',
+        icon: ICONS.system_monitor,
+        component: <div />, // Placeholder for RAM/CPU, handled in SystemMonitor
+        defaultSize: { width: 350, height: 220 },
+        isWidget: true,
+    },
+    {
+        id: 'directives',
+        title: 'NEXUS Directives',
+        icon: ICONS.directives,
+        component: <Widget title="" icon={null}><ul className="text-sm text-gray-400 space-y-2 max-h-40 overflow-y-auto">{NEXUS_DIRECTIVES.map((directive, index) => (<li key={index} className="flex items-start"><span className="text-amber-300 mr-2 mt-1 flex-shrink-0">&#10148;</span><span>{directive}</span></li>))}</ul></Widget>,
+        defaultSize: { width: 350, height: 220 },
+        isWidget: true,
+    },
+     {
+        id: 'task_history',
+        title: 'Task History',
+        icon: ICONS.history,
+        component: <div />, // Placeholder, needs state from App.tsx
+        defaultSize: { width: 350, height: 220 },
+        isWidget: true,
+    },
+    {
+        id: 'integrations',
+        title: 'Integrated Environments',
+        icon: ICONS.integrations,
+        component: <Widget title="" icon={null}> <ul className="text-sm text-gray-400 space-y-3"> <li className="flex items-center justify-between"> <div className="flex items-center gap-3"> <span className="text-sky-400">{ICONS.vscode}</span> <span>VS Code (OSS)</span> </div> <div className="flex items-center gap-2 text-xs"> <span className="text-green-400">●</span> <span>Active</span> </div> </li> <li className="flex items-center justify-between"> <div className="flex items-center gap-3"> <span className="text-blue-400">{ICONS.nextcloud}</span> <span>Nextcloud</span> </div> <div className="flex items-center gap-2 text-xs"> <span className="text-green-400">●</span> <span>Syncing</span> </div> </li> <li className="flex items-center justify-between"> <div className="flex items-center gap-3"> <span className="text-orange-400">{ICONS.brave}</span> <span>Brave Browser</span> </div> <div className="flex items-center gap-2 text-xs"> <span className="text-green-400">●</span> <span>Connected</span> </div> </li> <li className="flex items-center justify-between"> <div className="flex items-center gap-3"> <span className="text-yellow-400">{ICONS.chrome}</span> <span>Chrome Browser</span> </div> <div className="flex items-center gap-2 text-xs"> <span className="text-green-400">●</span> <span>Connected</span> </div> </li> </ul> </Widget>,
+        defaultSize: { width: 350, height: 250 },
+        isWidget: true,
+    },
+];
 
 export const LUMEN_OS_PRINCIPLES: ArchitecturePillar[] = [
   {
@@ -62,102 +173,4 @@ export const LUMEN_OS_PRINCIPLES: ArchitecturePillar[] = [
     icon: ICONS.security,
     keyFeatures: ['Immutable Core System', 'Sandboxed AI Assistants', 'AI-Driven Threat Inoculation', 'Perpetual Evolution Module'],
   },
-];
-
-export const APPLICATION_MATRIX = [
-    {
-        title: 'Productivity & Collaboration',
-        apps: [
-            { name: 'LibreOffice', icon: ICONS.libreoffice, synergy: 'Automate data extraction from spreadsheets, generate reports, or auto-populate presentation slides based on data streams.' },
-            { name: 'Jitsi Meet', icon: ICONS.jitsi, synergy: 'Schedule meetings, auto-join calls, transcribe conversations via AISTUDIO-trained models, and summarize discussion points.' },
-            { name: 'Nextcloud', icon: ICONS.nextcloud, synergy: 'Automate file organization, generate sharing links, manage user permissions, and trigger workflows based on file modifications.' },
-        ],
-    },
-    {
-        title: 'Creative & Design',
-        apps: [
-            { name: 'GIMP', icon: ICONS.gimp, synergy: 'Automate image batch processing, repetitive editing tasks, or generate assets based on AI-driven design prompts.' },
-            { name: 'Inkscape', icon: ICONS.inkscape, synergy: 'Automate the creation of icons, logos, or UI elements based on specifications, or extract design components for other apps.' },
-            { name: 'Krita', icon: ICONS.krita, synergy: 'Automate artwork exporting in various formats, manage brush presets, or integrate with other creative tools in a workflow.' },
-            { name: 'Blender', icon: ICONS.blender, synergy: 'Automate rendering queues, asset management, or trigger specific operations within Blender based on external data or schedules.' },
-        ],
-    },
-    {
-        title: 'Development & Engineering',
-        apps: [
-            { name: 'VS Code (OSS)', icon: ICONS.vscode, synergy: 'Automate code linting, run specific build commands, trigger tests, or interact with version control systems automatically.' },
-            { name: 'GitLab', icon: ICONS.gitlab, synergy: 'Automate deployment pipelines, monitor repository changes, and trigger issue creation based on external inputs.' },
-            { name: 'Jupyter', icon: ICONS.jupyter, synergy: 'Automate the execution of notebooks, extract results, generate reports, and visually interact with web-based data dashboards.' },
-        ],
-    },
-    {
-        title: 'Media & Entertainment',
-        apps: [
-            { name: 'VLC Player', icon: ICONS.vlc, synergy: 'Automate media playback based on schedules, manage playlists, or extract metadata from media files for organization.' },
-            { name: 'Audacity', icon: ICONS.audacity, synergy: 'Automate audio batch processing like normalization and format conversion, or prepare audio files for video projects.' },
-            { name: 'Kdenlive', icon: ICONS.kdenlive, synergy: 'Automate video rendering, asset management, or sequence specific video clips based on a script or external data.' },
-        ],
-    },
-    {
-        title: 'System & AI Utilities',
-        apps: [
-            { name: 'Syncthing', icon: ICONS.syncthing, synergy: 'Automate synchronization profiles, monitor sync status, and trigger actions based on file arrival or modification across devices.' },
-            { name: 'Btop', icon: ICONS.btop, synergy: 'Monitor system health and trigger self-healing protocols or resource re-allocation via the AI core if anomalies are detected.' },
-            { name: 'Lumina AI', icon: ICONS.lumina, synergy: 'Directly configure, monitor, and train Warmwind AI assistants. Visually design and manage automation workflows and AISTUDIO connections.' },
-        ],
-    },
-];
-
-export const AUTONOMOUS_AGENTS = [
-    {
-        title: 'Customer Support Assistant',
-        icon: ICONS.agent_support,
-        description: 'Handles all customer inquiries independently via email, chat, or social media. Finds order information, answers FAQs, and resolves problems autonomously.'
-    },
-    {
-        title: 'Accounting & Invoice Assistant',
-        icon: ICONS.agent_accounting,
-        description: 'Automatically recognizes invoices, extracts data, reconciles with purchase orders, logs transactions, and prepares monthly financial statements.'
-    },
-    {
-        title: 'Recruiting Assistant',
-        icon: ICONS.agent_recruiting,
-        description: 'Independently screens applications, checks CVs and social media profiles, conducts initial interviews, and evaluates candidates to provide a top selection.'
-    },
-    {
-        title: 'Social Media Growth Manager',
-        icon: ICONS.agent_social,
-        description: 'Scans trends, automatically creates and schedules posts, and continuously analyzes performance, allowing marketing teams to focus on strategy.'
-    },
-    {
-        title: 'Competition Monitoring',
-        icon: ICONS.agent_monitoring,
-        description: 'Monitors competitors\' social media accounts and automatically creates concise reports on their activities, ensuring you stay ahead.'
-    },
-    {
-        title: 'Website & Product Monitoring',
-        icon: ICONS.agent_website,
-        description: 'Continuously monitors website health, analyzes visitor flows, detects errors and downtimes, and automatically reports anomalies to developers.'
-    },
-    {
-        title: 'Innovation Scout',
-        icon: ICONS.agent_innovation,
-        description: 'Scours the web daily for innovative technologies, relevant startups, and market trends, generating automated innovation reports.'
-    }
-];
-
-export const NEXUS_DIRECTIVES: string[] = [
-  'Prototype Dynamic Kernel Weave',
-  'Evolve predictive algorithms',
-  'Generate new canvas topographies',
-  'Implement self-healing protocols',
-  'Harmonize resonant feedback',
-];
-
-export const PREDEFINED_INSIGHTS: string[] = [
-  "Analysis of recent Flow Streams indicates a repetitive data entry task. I can architect a visual workflow to automate this.",
-  "Multiple containerized applications are awaiting deployment. Shall I orchestrate a staggered rollout to optimize resource allocation?",
-  "The Memory Weave contains several untagged visual assets. I can initiate an AI-powered process to apply relevant Lumina Tags.",
-  "System monitoring shows suboptimal performance in the shell's rendering loop. I can initiate a self-architecting cycle to harmonize it.",
-  "A new security advisory has been issued that may affect our core kernel. I can run a simulation to assess the threat vector.",
 ];
