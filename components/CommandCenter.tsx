@@ -6,10 +6,10 @@ interface CommandCenterProps {
 }
 
 const commandSuggestions = [
-  "Weave a new space for poetry",
-  "Show connections for 'biomorphic design'",
-  "Generate canvas: tranquil night",
-  "Synthesize recent thoughts on philosophy",
+  "Automate daily report from Salesforce",
+  "Extract invoices from my email",
+  "Generate canvas: digital cityscape",
+  "Organize my design files in Canva",
 ];
 
 export const CommandCenter: React.FC<CommandCenterProps> = ({ onSubmit, isLoading }) => {
@@ -31,12 +31,12 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ onSubmit, isLoadin
     <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-500/30 rounded-lg p-4 shadow-2xl">
       <form onSubmit={handleSubmit}>
         <div className="flex items-center gap-4">
-          <span className="text-amber-300 font-mono text-lg animate-pulse">~</span>
+          <span className="text-amber-300 font-mono text-lg animate-pulse">&gt;</span>
           <input
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
-            placeholder="Whisper your intent to the Weave..."
+            placeholder="Describe a task for NEXUS to automate..."
             className="w-full bg-transparent focus:outline-none text-gray-200 placeholder-gray-500"
             disabled={isLoading}
           />
@@ -45,7 +45,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({ onSubmit, isLoadin
             disabled={isLoading}
             className="px-4 py-2 bg-amber-400 text-black font-semibold rounded-md hover:bg-amber-300 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
           >
-            {isLoading ? 'Weaving...' : 'Echo'}
+            {isLoading ? 'Executing...' : 'Execute'}
           </button>
         </div>
       </form>

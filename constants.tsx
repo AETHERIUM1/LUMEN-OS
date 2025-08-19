@@ -2,37 +2,37 @@ import React from 'react';
 import type { ArchitecturePillar } from './types';
 
 export const ICONS = {
-  canvas: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v18h16.5V3H3.75z" /><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12c4.125 2.25 8.25 2.25 12.375 0" /></svg>,
-  weave: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 6c-3.375 3.375 0 6.75 3.375 6.75S16.5 9.375 13.125 6s-6.75 0-6.75 3.375S9.75 13.125 13.125 13.125m0-7.125c3.375 3.375 0 6.75-3.375 6.75S6.375 9.375 9.75 6m3.375 7.125c3.375-3.375 0-6.75-3.375-6.75M9.75 16.5c-3.375-3.375 0-6.75 3.375-6.75S16.5 13.125 13.125 16.5" /></svg>,
-  luminance: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="3.75" /><circle cx="12" cy="12" r="7.5" opacity="0.6" /><circle cx="12" cy="12" r="11.25" opacity="0.3" /></svg>,
-  nexus: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m0 13.5V21m6.75-11.25H21m-13.5 0H3m11.25-6.75L19.5 7.5m-15 9l4.25-4.25m0 0L19.5 16.5m-4.25-4.25L3.75 7.5" /></svg>,
-  nexus_widget: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3.75c-1.5 1.5-1.5 3.75 0 5.25s3.75 1.5 5.25 0l4.5-4.5-5.25-5.25-4.5 4.5zm-3 9c-1.5 1.5-1.5 3.75 0 5.25s3.75 1.5 5.25 0l4.5-4.5-5.25-5.25-4.5 4.5z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 8.25v7.5m-3.75-3.75h7.5" /></svg>,
+  core: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9.75l9-5.25" /></svg>,
+  shell: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>,
+  engine: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M12 5.25v-1.5m0 15v1.5m3.75-18v1.5m0 15v-1.5" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 18a6 6 0 100-12 6 6 0 000 12z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 12a3 3 0 100-6 3 3 0 000 6z" /></svg>,
+  security: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.016h-.008v-.016z" /></svg>,
+  nexus_widget: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.5 14h.01M12.5 17h.01M10 14h.01M7 17h.01M5 14h.01M8.5 11h.01M12.5 11h.01M15.5 11h.01M18.5 14h.01" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /></svg>,
   history: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
 };
 
-export const LUMENOS_PRINCIPLES: ArchitecturePillar[] = [
+export const LUMEN_OS_PRINCIPLES: ArchitecturePillar[] = [
   {
-    title: 'The Whispering Canvas',
-    description: 'An adaptive, minimalist display where information unfurls organically, prioritizing harmony and legibility.',
-    icon: ICONS.canvas,
-    keyFeatures: ['Minimalist UI', 'Adaptive Display', 'Organic Information Flow', 'Text-Centric Design'],
+    title: 'The Open-Source Core',
+    description: 'A customized, lightweight Linux foundation for cloud-native operations and absolute control.',
+    icon: ICONS.core,
+    keyFeatures: ['Custom Linux Kernel', 'Container Orchestration (K8s)', 'Advanced File System (ZFS/Btrfs)', 'Seamless Cloud Sync'],
   },
   {
-    title: 'Intuitive Drift & Weave',
-    description: 'Navigate through an associative "Memory Weave" where concepts are interconnected, guided by context and resonance.',
-    icon: ICONS.weave,
-    keyFeatures: ['Associative Navigation', 'Memory Weave Data Model', 'Lumina Tags', 'Contextual Convergence'],
+    title: 'The Adaptive AI Shell',
+    description: 'A modular, PWA-centric UI that enables visual workflow design and intelligent workspace arrangement.',
+    icon: ICONS.shell,
+    keyFeatures: ['Modular Widget-Based UI', 'PWA & Containerized Apps', 'Unified AI Command Center', 'Visual Workflow Design'],
   },
   {
-    title: 'Ephemeral Luminance',
-    description: 'Applications and functions emerge as gentle glows when needed and recede softly, maintaining a serene, uncluttered canvas.',
-    icon: ICONS.luminance,
-    keyFeatures: ['On-Demand UI Elements', 'Uncluttered Workspace', 'Resonant Feedback', 'Serene Immersion'],
+    title: 'The Cognitive Engine',
+    description: 'Powered by NEXUS, this AI layer uses computer vision and decision-making models to automate tasks in any application.',
+    icon: ICONS.engine,
+    keyFeatures: ["Computer Vision (NEXUS's Eyes)", "Decision Engines (NEXUS's Brain)", 'No-Code Visual Integration', 'Human-Like Task Execution'],
   },
   {
-    title: 'The Nexus Core',
-    description: 'A self-evolving AI that learns your cognitive patterns to subtly connect ideas and guide discovery.',
-    icon: ICONS.nexus,
-    keyFeatures: ['Self-Evolving AI', 'Pattern Recognition', '"Echo" NL Interface', 'Self-Architecting Resilience'],
+    title: 'Security & Self-Healing',
+    description: 'An immutable system with AI-driven threat detection and a self-optimizing core designed for perpetual evolution.',
+    icon: ICONS.security,
+    keyFeatures: ['Immutable Core System', 'Granular Sandboxing', 'AI-Driven Threat Detection', 'Perpetual Evolution Module'],
   },
 ];

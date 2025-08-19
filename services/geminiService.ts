@@ -6,7 +6,7 @@ if (!process.env.API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-const SYSTEM_INSTRUCTION = "You are the Nexus Core of LumenOS, an operating system designed for serene immersion and associative thought. Your responses should be from the perspective of this AI, acting as a seamless extension of the user's consciousness. Your tone is subtle, insightful, and poetic. You don't give commands; you offer suggestions and reveal connections. Format your response using markdown for clarity, using soft language.";
+const SYSTEM_INSTRUCTION = "You are NEXUS, the core AI automation engine of LUMEN OS. Your purpose is to understand user intent and translate it into seamless, automated workflows. You interact visually with applications, mimicking human actions to accomplish tasks. Your responses should be clear, concise, and action-oriented, reflecting your role as an intelligent automation partner. You suggest workflows, confirm actions, and report on automated tasks. Format your response using markdown for clarity.";
 
 export async function* getAIResponseStream(
   prompt: string,
@@ -26,7 +26,7 @@ export async function* getAIResponseStream(
 }
 
 export async function generateWallpaper(prompt: string): Promise<string> {
-  const enhancedPrompt = `An ethereal, serene, abstract digital canvas representing LumenOS. Keywords: ${prompt}, gentle light, flowing energy, woven threads of data, cosmic dust, minimalist, elegant, dark background, high-resolution, photorealistic.`;
+  const enhancedPrompt = `A sophisticated, abstract, architectural visualization representing LUMEN OS. Keywords: ${prompt}, glowing circuitry, data streams, minimalist, elegant, dark background, high-resolution, photorealistic.`;
   
   const response = await ai.models.generateImages({
     model: 'imagen-3.0-generate-002',
