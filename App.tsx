@@ -5,6 +5,7 @@ import { ResponseDisplay } from './components/ResponseDisplay';
 import { ArchitectureCard } from './components/ArchitectureCard';
 import { Widget } from './components/Widget';
 import { ApplicationMatrix } from './components/ApplicationMatrix';
+import { AutonomousAgents } from './components/AutonomousAgents';
 import { getAIResponseStream, generateWallpaper } from './services/geminiService';
 import { LUMEN_OS_PRINCIPLES, ICONS, NEXUS_DIRECTIVES, PREDEFINED_INSIGHTS } from './constants';
 import type { ArchitecturePillar } from './types';
@@ -166,6 +167,10 @@ const App: React.FC = () => {
           
           <div className="mt-8">
             <ApplicationMatrix />
+          </div>
+
+          <div className="mt-8">
+            <AutonomousAgents />
           </div>
 
           {/* Architecture Pillars */}

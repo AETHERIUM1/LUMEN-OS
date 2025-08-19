@@ -28,6 +28,13 @@ export const ICONS = {
   syncthing: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M12.012 0C7.884.012 4.044 2.304 1.68 5.628L6.42 8.7a6.22 6.22 0 0 1 5.604-5.22V0zm7.128 5.088a12 12 0 0 0-4.044-3.564v4.068a6.2 6.2 0 0 1 2.76 2.664zm2.184 5.376h4.08A12.01 12.01 0 0 0 21.9 6.78l-3.324 2.82a6.2 6.2 0 0 1 .744 3.864zM4.704 6.78a12.01 12.01 0 0 0-2.592 3.684H6.24a6.2 6.2 0 0 1 .792-3.864zM0 12c.012 4.128 2.304 7.968 5.628 10.332l3.084-4.74a6.22 6.22 0 0 1-5.232-5.592H0zm13.464 2.868l4.188 6.552A11.95 11.95 0 0 0 24 12h-4.068a6.2 6.2 0 0 1-6.468 2.868zM8.376 14.88l-6.552 4.188A11.95 11.95 0 0 0 12 24v-4.068a6.2 6.2 0 0 1-3.624-5.052z"/></svg>,
   btop: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor"><path d="M0 0v24h24V0H0zm2.25 2.25h19.5v19.5H2.25V2.25zm2.25 2.25v2.25h15V4.5H4.5zm0 4.5v2.25h15V9H4.5zm0 4.5v2.25h15v-2.25H4.5zm0 4.5v2.25h15v-2.25H4.5z"/></svg>,
   lumina: <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-6.364-.386l1.591-1.591M3 12h2.25m.386-6.364l1.591 1.591" /></svg>,
+  agent_support: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 10a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+  agent_accounting: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M12 21a9 9 0 110-18 9 9 0 010 18z" /></svg>,
+  agent_recruiting: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h4a2 2 0 012 2v1m-4 0h4m-9 4h2m-2 4h2m2-4h2m-2 4h2" /></svg>,
+  agent_social: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
+  agent_monitoring: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>,
+  agent_website: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h5M5 12a7 7 0 117 7" /></svg>,
+  agent_innovation: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>,
 };
 
 export const LUMEN_OS_PRINCIPLES: ArchitecturePillar[] = [
@@ -38,22 +45,22 @@ export const LUMEN_OS_PRINCIPLES: ArchitecturePillar[] = [
     keyFeatures: ['Custom Linux Kernel', 'Container Orchestration (K8s)', 'Advanced File System (ZFS/Btrfs)', 'Seamless Cloud Sync'],
   },
   {
-    title: 'The Adaptive AI Shell',
-    description: 'A modular, PWA-centric UI that enables visual workflow design and intelligent workspace arrangement.',
+    title: 'The Whispering Canvas (AI Shell)',
+    description: 'A profoundly customized KDE Plasma interface. The workspace is a minimalist, adaptive canvas where applications and workflows materialize and recede with intelligent grace.',
     icon: ICONS.shell,
-    keyFeatures: ['Modular Widget-Based UI', 'PWA & Containerized Apps', 'Unified AI Command Center', 'Visual Workflow Design'],
+    keyFeatures: ['Customized KDE Plasma UI', 'Context-Aware Adaptive Layouts', 'Brave Browser Integration', 'Visual Workflow Design'],
   },
   {
-    title: 'The Cognitive Engine',
-    description: 'Powered by NEXUS, this AI layer uses computer vision and decision-making models to automate tasks in any application.',
+    title: 'The Warmwind Cognitive Engine',
+    description: 'The engine for Autonomous Cloud Employees. Warmwind uses computer vision to interact with applications like a human, bypassing APIs for true no-code, universal automation.',
     icon: ICONS.engine,
-    keyFeatures: ["Computer Vision (NEXUS's Eyes)", "Decision Engines (NEXUS's Brain)", 'No-Code Visual Integration', 'Human-Like Task Execution'],
+    keyFeatures: ["Human-Like Visual Interaction", "True No-Code Integration", "Scalable AI Workforce", "Autonomous Decision-Making"],
   },
   {
     title: 'Security & Self-Healing',
     description: 'An immutable system with AI-driven threat detection and a self-optimizing core designed for perpetual evolution.',
     icon: ICONS.security,
-    keyFeatures: ['Immutable Core System', 'Granular Sandboxing', 'AI-Driven Threat Detection', 'Perpetual Evolution Module'],
+    keyFeatures: ['Immutable Core System', 'Sandboxed AI Assistants', 'AI-Driven Threat Inoculation', 'Perpetual Evolution Module'],
   },
 ];
 
@@ -99,6 +106,44 @@ export const APPLICATION_MATRIX = [
             { name: 'Lumina AI', icon: ICONS.lumina, synergy: 'Directly configure, monitor, and train Warmwind AI assistants. Visually design and manage automation workflows and AISTUDIO connections.' },
         ],
     },
+];
+
+export const AUTONOMOUS_AGENTS = [
+    {
+        title: 'Customer Support Assistant',
+        icon: ICONS.agent_support,
+        description: 'Handles all customer inquiries independently via email, chat, or social media. Finds order information, answers FAQs, and resolves problems autonomously.'
+    },
+    {
+        title: 'Accounting & Invoice Assistant',
+        icon: ICONS.agent_accounting,
+        description: 'Automatically recognizes invoices, extracts data, reconciles with purchase orders, logs transactions, and prepares monthly financial statements.'
+    },
+    {
+        title: 'Recruiting Assistant',
+        icon: ICONS.agent_recruiting,
+        description: 'Independently screens applications, checks CVs and social media profiles, conducts initial interviews, and evaluates candidates to provide a top selection.'
+    },
+    {
+        title: 'Social Media Growth Manager',
+        icon: ICONS.agent_social,
+        description: 'Scans trends, automatically creates and schedules posts, and continuously analyzes performance, allowing marketing teams to focus on strategy.'
+    },
+    {
+        title: 'Competition Monitoring',
+        icon: ICONS.agent_monitoring,
+        description: 'Monitors competitors\' social media accounts and automatically creates concise reports on their activities, ensuring you stay ahead.'
+    },
+    {
+        title: 'Website & Product Monitoring',
+        icon: ICONS.agent_website,
+        description: 'Continuously monitors website health, analyzes visitor flows, detects errors and downtimes, and automatically reports anomalies to developers.'
+    },
+    {
+        title: 'Innovation Scout',
+        icon: ICONS.agent_innovation,
+        description: 'Scours the web daily for innovative technologies, relevant startups, and market trends, generating automated innovation reports.'
+    }
 ];
 
 export const NEXUS_DIRECTIVES: string[] = [
