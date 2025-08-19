@@ -4,6 +4,7 @@ import { CommandCenter } from './components/CommandCenter';
 import { ResponseDisplay } from './components/ResponseDisplay';
 import { ArchitectureCard } from './components/ArchitectureCard';
 import { Widget } from './components/Widget';
+import { ApplicationMatrix } from './components/ApplicationMatrix';
 import { getAIResponseStream, generateWallpaper } from './services/geminiService';
 import { LUMEN_OS_PRINCIPLES, ICONS, NEXUS_DIRECTIVES, PREDEFINED_INSIGHTS } from './constants';
 import type { ArchitecturePillar } from './types';
@@ -120,6 +121,26 @@ const App: React.FC = () => {
                   <ul className="text-sm text-gray-400 space-y-3">
                     <li className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
+                        <span className="text-sky-400">{ICONS.vscode}</span>
+                        <span>VS Code (OSS)</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-green-400">●</span>
+                        <span>Active</span>
+                      </div>
+                    </li>
+                     <li className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-blue-400">{ICONS.nextcloud}</span>
+                        <span>Nextcloud</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-green-400">●</span>
+                        <span>Syncing</span>
+                      </div>
+                    </li>
+                    <li className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
                         <span className="text-orange-400">{ICONS.brave}</span>
                         <span>Brave Browser</span>
                       </div>
@@ -130,7 +151,7 @@ const App: React.FC = () => {
                     </li>
                     <li className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <span className="text-blue-400">{ICONS.chrome}</span>
+                        <span className="text-yellow-400">{ICONS.chrome}</span>
                         <span>Chrome Browser</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs">
@@ -143,6 +164,10 @@ const App: React.FC = () => {
             </div>
           </div>
           
+          <div className="mt-8">
+            <ApplicationMatrix />
+          </div>
+
           {/* Architecture Pillars */}
           <div className="mt-8">
             <h2 className="text-xl font-semibold mb-4 text-gray-300 tracking-wider">LUMEN OS Architecture</h2>
