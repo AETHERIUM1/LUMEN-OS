@@ -5,7 +5,7 @@ import { ResponseDisplay } from './components/ResponseDisplay';
 import { ArchitectureCard } from './components/ArchitectureCard';
 import { Widget } from './components/Widget';
 import { getAIResponseStream, generateWallpaper } from './services/geminiService';
-import { LUMEN_OS_PRINCIPLES, ICONS } from './constants';
+import { LUMEN_OS_PRINCIPLES, ICONS, NEXUS_DIRECTIVES, PREDEFINED_INSIGHTS } from './constants';
 import type { ArchitecturePillar } from './types';
 
 const App: React.FC = () => {
@@ -17,29 +17,10 @@ const App: React.FC = () => {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [currentCommand, setCurrentCommand] = useState<string>('');
   
-  const fetchInitialInsight = useCallback(async () => {
-    setIsLoading(true);
-    setAiResponse('');
-    const prompt = `Generate a single, proactive 'NEXUS Suggestion' for the LUMEN OS dashboard. This should be an intelligent nudge suggesting an automation workflow based on hypothetical user activity. For example: 'I've noticed you're manually compiling data for the weekly report. Shall I create a workflow to automate this process?' or 'Several new design assets have been received in your email. I can automatically organize them into the correct project folders.'`;
-    
-    let fullResponse = '';
-    try {
-      const stream = await getAIResponseStream(prompt, 'You are the proactive assistant of LUMEN OS.');
-      for await (const chunk of stream) {
-        fullResponse += chunk;
-      }
-      setUserInsight(fullResponse);
-    } catch (error) {
-      console.error('Failed to fetch initial insight:', error);
-      setUserInsight('Error fetching AI insight. NEXUS may be recalibrating.');
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
-    fetchInitialInsight();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // To prevent API rate-limiting on load, we now cycle through predefined insights.
+    const randomIndex = Math.floor(Math.random() * PREDEFINED_INSIGHTS.length);
+    setUserInsight(PREDEFINED_INSIGHTS[randomIndex]);
   }, []);
 
   const handleCommandSubmit = async (command: string) => {
@@ -114,6 +95,16 @@ const App: React.FC = () => {
                   </div>
                   <p className="text-xs text-gray-500 mt-1 text-right">Automation Efficiency: 75%</p>
                </Widget>
+               <Widget title="NEXUS Directives" icon={ICONS.directives}>
+                  <ul className="text-sm text-gray-400 space-y-2 max-h-40 overflow-y-auto">
+                    {NEXUS_DIRECTIVES.map((directive, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-amber-300 mr-2 mt-1 flex-shrink-0">&#10148;</span>
+                        <span>{directive}</span>
+                      </li>
+                    ))}
+                  </ul>
+               </Widget>
                <Widget title="Task History" icon={ICONS.history}>
                   <ul className="text-sm text-gray-400 space-y-1 max-h-40 overflow-y-auto">
                     {commandHistory.length > 0 ? commandHistory.slice(-5).reverse().map((cmd, index) => (
@@ -123,6 +114,30 @@ const App: React.FC = () => {
                     )) : (
                       <li>No tasks executed yet.</li>
                     )}
+                  </ul>
+               </Widget>
+               <Widget title="Integrated Environments" icon={ICONS.integrations}>
+                  <ul className="text-sm text-gray-400 space-y-3">
+                    <li className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-orange-400">{ICONS.brave}</span>
+                        <span>Brave Browser</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-green-400">●</span>
+                        <span>Connected</span>
+                      </div>
+                    </li>
+                    <li className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-blue-400">{ICONS.chrome}</span>
+                        <span>Chrome Browser</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-green-400">●</span>
+                        <span>Connected</span>
+                      </div>
+                    </li>
                   </ul>
                </Widget>
             </div>

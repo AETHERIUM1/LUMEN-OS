@@ -6,10 +6,10 @@ interface CommandCenterProps {
 }
 
 const commandSuggestions = [
-  "Automate daily report from Salesforce",
-  "Extract invoices from my email",
-  "Generate canvas: digital cityscape",
-  "Organize my design files in Canva",
+  "Generate canvas: osmium weave",
+  "Optimize Memory Weave protocol",
+  "Initiate self-architecting cycle",
+  "Analyze user Flow Streams",
 ];
 
 export const CommandCenter: React.FC<CommandCenterProps> = ({ onSubmit, isLoading }) => {
